@@ -1,0 +1,10 @@
+vim .git/config
+
+//add next content
+
+[remote "origin"]
+	url = https://junner9291@github.com/junner9291/lnmp.git
+
+[user]
+    name = junner9291
+
