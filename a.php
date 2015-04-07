@@ -103,6 +103,10 @@ xdebug.collect_params = on
 xdebug.collect_return = on
 xdebug.profiler_enable = on
 
+xdebug.var_display_max_depth = 9
+;xdebug.var_display_max_children = 128
+;xdebug.var_display_max_data = 512
+
 //php-fpm
 ./configure --prefix=/usr/local/php5_4/ --with-config-file-path=/usr/local/php5_4/etc/ --with-mysql=/usr/local/mysql --with-mysqli=/usr/local/mysql/bin/mysql_config --enable-exif --enable-gd-native-ttf --enable-mbstring --enable-xml --enable-zip --enable-pdo --with-t1lib --with-zlib --with-gd  --with-xsl --with-pear --with-curl  --with-mcrypt --with-freetype-dir --with-jpeg-dir --with-libxml-dir --with-pcre-dir --with-png-dir --with-openssl --with-iconv --enable-fastCGI --enable-debug
 
