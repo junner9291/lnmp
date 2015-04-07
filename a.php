@@ -88,6 +88,8 @@ make && make install
 edit php.ini and add 
 
 zend_extension ="/usr/local/php/xdebug/xdebug.so"  
+xdebug.default_enable = 1
+
 xdebug.trace_output_dir="/usr/local/php5/xdebug/"  
 xdebug.profiler_output_dir="/usr/local/php5/xdebug/"  
 xdebug.remote_enable=on             
