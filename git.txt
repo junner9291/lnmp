@@ -8,3 +8,5 @@ vim .git/config
 [user]
     name = junner9291
 
+git push -u origin master
+
