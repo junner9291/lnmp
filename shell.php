@@ -4,3 +4,5 @@ echo src::${PATH} | awk 'BEGIN{pwd=ENVIRON["PWD"];RS=":";FS="\n"}!$1{$1=pwd}$1!~
 
 date -d @1234567890 读取unix时间
 find . -name "*.php" | xargs -n 1 php -l
+
+awk`
