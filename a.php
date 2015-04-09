@@ -45,6 +45,10 @@ scripts/mysql_install_db --basedir=/data/local/mysql --datadir=/data/local/mysql
 cp support-files/my-medium.cnf /etc/my.cnf
 vi /data/local/mysql/my.cnf
 
+vim /etc/init.d/mysqld
+basedir=/data/local/mysql
+datadir=/data/local/mysql/data
+
 //selinux
 vim /etc/selinux/config
 #SELINUX=enforcing
@@ -79,7 +83,29 @@ libtool-ltdl-devel
 #apache
  ./configure --prefix=/data/local/php5 --with-config-file-path=/data/local/php5/etc --with-apxs2=/data/local/apache/bin/apxs --with-mysql=/data/local/mysql --with-mysqli=/data/local/mysql/bin/mysql_config 
 
+#simple nginx 
+ ./configure --prefix=/data/local/php5 --with-config-file-path=/data/local/php5/etc --with-mysql=/data/local/mysql --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --with-iconv --enable-pdo --enable-xml --enable-zip --with-pear --enable-fpm
+
+//php-fpm
+./configure --prefix=/usr/local/php5_4/ --with-config-file-path=/usr/local/php5_4/etc/ --with-mysql=/usr/local/mysql --with-mysqli=/usr/local/mysql/bin/mysql_config --enable-exif --enable-gd-native-ttf --enable-mbstring --enable-xml --enable-zip --enable-pdo --with-t1lib --with-zlib --with-gd  --with-xsl --with-pear --with-curl  --with-mcrypt --with-freetype-dir --with-jpeg-dir --with-libxml-dir --with-pcre-dir --with-png-dir --with-openssl --with-iconv --enable-fastCGI --enable-debug
+
+//mysqlnd
+./configure --prefix=/data/local/php5_5/ --with-mysql=/data/local/mysql --with-mysqli=mysqlnd --enable-exif --enable-gd-native-ttf --enable-mbstring --enable-xml --enable-zip --enable-pdo --with-t1lib --with-zlib --with-gd  --with-xsl --with-pear --with-curl  --with-mcrypt --with-freetype-dir --with-jpeg-dir --with-libxml-dir --with-pcre-dir --with-png-dir --with-openssl --with-iconv --enable-fpm --enable-debug
+
 cp php.ini-development /usr/local/lib/php.ini
+
+//php-ini
+cp php.ini-development /etc/php.ini
+cp /usr/local/etc/php-fpm.conf.default /usr/local/etc/php-fpm.conf
+cp /data/local/php5_5/etc/php-fpm.conf.default /etc/php-fpm.conf
+cp sapi/fpm/php-fpm /usr/bin/
+
+vim /etc/php.ini
+cgi.fix_pathinfo=0
+
+vim /etc/php-fpm.conf
+user = www-data
+group = www-data
 
 //xdebug
 /usr/local/php/bin/phpize
@@ -107,24 +133,6 @@ xdebug.var_display_max_depth = 9
 ;xdebug.var_display_max_children = 128
 ;xdebug.var_display_max_data = 512
 
-//php-fpm
-./configure --prefix=/usr/local/php5_4/ --with-config-file-path=/usr/local/php5_4/etc/ --with-mysql=/usr/local/mysql --with-mysqli=/usr/local/mysql/bin/mysql_config --enable-exif --enable-gd-native-ttf --enable-mbstring --enable-xml --enable-zip --enable-pdo --with-t1lib --with-zlib --with-gd  --with-xsl --with-pear --with-curl  --with-mcrypt --with-freetype-dir --with-jpeg-dir --with-libxml-dir --with-pcre-dir --with-png-dir --with-openssl --with-iconv --enable-fastCGI --enable-debug
-
-//mysqlnd
-./configure --prefix=/data/local/php5_5/ --with-mysql=/data/local/mysql --with-mysqli=mysqlnd --enable-exif --enable-gd-native-ttf --enable-mbstring --enable-xml --enable-zip --enable-pdo --with-t1lib --with-zlib --with-gd  --with-xsl --with-pear --with-curl  --with-mcrypt --with-freetype-dir --with-jpeg-dir --with-libxml-dir --with-pcre-dir --with-png-dir --with-openssl --with-iconv --enable-fpm --enable-debug
-
-//php-ini
-cp php.ini-development /etc/php.ini
-cp /usr/local/etc/php-fpm.conf.default /usr/local/etc/php-fpm.conf
-cp /data/local/php5_5/etc/php-fpm.conf.default /etc/php-fpm.conf
-cp sapi/fpm/php-fpm /usr/bin/
-
-vim /etc/php.ini
-cgi.fix_pathinfo=0
-
-vim /etc/php-fpm.conf
-user = www-data
-group = www-data
 
 //php-fpm rstart
 killall php-fpm
