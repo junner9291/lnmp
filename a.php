@@ -1,4 +1,5 @@
 <?
+
 //apache
 ./configure --prefix=/data/local/apache/ --with-apr=/data/local/apr/ --with-apr-util=/data/local/apr-util/ --with-pcre=/data/local/pcre/ --enable-mods-shared=all --enable-rewrite --enable-so
 
