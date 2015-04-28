@@ -22,4 +22,12 @@ echo "some cool message from terminal" | mail -s "test" email@address.com
 
 sh  /home/webroot/webroot/mis/protected/commands/shell/sync.sh
 
+//rsync
+rsync -a --delete --exclude=/usr/local/dagger/2.0/ 10.210.210.193::dagger
+
+//disk
+vim /etc/fstab
+/dev/vdb    data   ext4     defaults    0   0
+
+
 

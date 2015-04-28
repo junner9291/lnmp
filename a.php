@@ -49,10 +49,6 @@ vim /etc/init.d/mysqld
 basedir=/data/local/mysql
 datadir=/data/local/mysql/data
 
-//selinux
-vim /etc/selinux/config
-#SELINUX=enforcing
-SELINUX=disabled
 
 //edit password
 mysql -uroot  
@@ -256,13 +252,5 @@ tar -xf ../tcl8.6.3-html.tar.gz --strip-components=1
 cd tcl8.6.3
 cd unix
 ./configure --prefix=/data/local/tcl
-
-
-//rsync
-rsync -a --delete --exclude=/usr/local/dagger/2.0/ 10.210.210.193::dagger
-
-//disk
-vim /etc/fstab
-/dev/vdb    data   ext4     defaults    0   0
 
 
